@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import { SearchBar } from "./components/SearchBar/SearchBar";
 import toast, { Toaster } from "react-hot-toast";
-import SearchBar from "./components/SearchBar/SearchBar";
+import axios from "axios";
+import "./App.css";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
 
-export function App() {
+export const App = () => {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
@@ -64,6 +67,8 @@ export function App() {
     <div>
       <Toaster />
       <SearchBar onSubmit={handleSearchSubmit} />
+      {error && <ErrorMessage message={error} />}
+      <ImageGallery images={images} onImageClick={openModal} />
     </div>
   );
-}
+};

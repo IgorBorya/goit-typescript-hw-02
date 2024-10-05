@@ -1,7 +1,7 @@
-import react from "@vitejs/plugin-react-swc";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
-export default function SearchBar({ onSubmit }) {
+export const SearchBar = ({ onSubmit }) => {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (e) => {
@@ -32,4 +32,4 @@ export default function SearchBar({ onSubmit }) {
       </form>
     </header>
   );
-}
+};
