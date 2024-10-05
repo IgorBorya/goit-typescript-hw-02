@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import toast, { Toaster } from "react-hot-toast";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 export function App() {
   const [images, setImages] = useState([]);
@@ -60,5 +60,10 @@ export function App() {
     selectedImage(null);
   };
 
-  return <></>;
+  return (
+    <div>
+      <Toaster />
+      <SearchBar onSubmit={handleSearchSubmit} />
+    </div>
+  );
 }
