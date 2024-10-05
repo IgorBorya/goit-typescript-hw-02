@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export function App() {
+  const [images, setImages] = useState([]);
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  const fetchImages = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.get(
+        `https://pixabay.com/api/?key=660478&r2luvSt2sA0VJUdxLP5-U8CawQjqRV5RxmAWPFmQLRc&q=${query}&image_type=photo&per_page=12&page=${page}`
+      );
+      const newImages = response.data.hits;
+
+      if (newImages.length === 0) {
+        toast.error("No images found!");
+      } else {
+        setImages((prevImages) => [...prevImages, ...newImages]);
+      }
+    } catch (error) {
+      setError("Failed to fetch images.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return <></>;
 }
-
-export default App
