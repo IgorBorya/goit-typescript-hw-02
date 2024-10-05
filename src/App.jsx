@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -32,6 +32,32 @@ export function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    if (query) {
+      fetchImages();
+    }
+  }, [query, page]);
+
+  const handleSearchSubmit = (searchQuery) => {
+    setQuery(searchQuery);
+    setImages([]);
+    setPage(1);
+  };
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    selectedImage(null);
   };
 
   return <></>;
