@@ -1,14 +1,19 @@
 import React from "react";
-import { ImageCard } from "./ImageCard";
 
-export const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <ul>
+    <div>
       {images.map((image) => (
-        <li key={image.id}>
-          <ImageCard image={image} />
-        </li>
+        <div key={image.id}>
+          <img
+            src={image.urls.small} // Тут використовуй ключ urls.small для зображення
+            alt={image.alt_description} // Або image.description
+            onClick={() => onImageClick(image.urls.full)} // Можливо ти захочеш відкрити велике зображення у модальному вікні
+          />
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
+
+export default ImageGallery;

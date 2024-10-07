@@ -1,19 +1,10 @@
 import React from "react";
-import { Oval } from "react-loader-spinner";
+import { TailSpin } from "react-loader-spinner";
 
-export const Loader = () => (
-  <div className="loader">
-    <Oval
-      height={80}
-      width={80}
-      color="#4fa94d"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-      ariaLabel="oval-loading"
-      secondaryColor="#4fa94d"
-      strokeWidth={2}
-      strokeWidthSecondary={2}
-    />
+const Loader = () => (
+  <div>
+    <TailSpin color="#00BFFF" height={80} width={80} />
   </div>
 );
+
+export default Loader;

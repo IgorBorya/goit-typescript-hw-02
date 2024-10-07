@@ -1,22 +1,22 @@
+import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useState } from "react";
 
-export const SearchBar = ({ onSubmit }) => {
-  const [query, setQuery] = useState("");
+const SearchBar = ({ onSubmit }) => {
+  const [input, setInput] = useState("");
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
+  const handleChange = (e) => {
+    setInput(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!query.trim()) {
-      toast.error("Please enter a search term!");
+    if (input.trim() === "") {
+      toast.error("Please enter a search term.");
       return;
     }
-    onSubmit(query);
-    setQuery("");
+    onSubmit(input.trim());
   };
+
   return (
     <header>
       <form onSubmit={handleSubmit}>
@@ -25,11 +25,13 @@ export const SearchBar = ({ onSubmit }) => {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          value={query}
-          onChange={handleInputChange}
+          value={input}
+          onChange={handleChange}
         />
         <button type="submit">Search</button>
       </form>
     </header>
   );
 };
+
+export default SearchBar;

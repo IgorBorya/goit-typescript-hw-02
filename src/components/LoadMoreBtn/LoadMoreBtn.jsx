@@ -1,5 +1,11 @@
 import React from "react";
 
-export default function LoadMoreBtn() {
-  return <div></div>;
-}
+const LoadMoreBtn = ({ onClick }) => {
+  return (
+    <button type="button" onClick={onClick}>
+      Load more
+    </button>
+  );
+};
+
+export default LoadMoreBtn;
