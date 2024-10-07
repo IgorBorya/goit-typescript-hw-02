@@ -49,8 +49,8 @@ const App = () => {
   const handleSearchSubmit = (newQuery) => {
     if (newQuery === query) return;
     setQuery(newQuery);
-    setImages([]); // Очищуємо попередні результати
-    setPage(1); // Скидаємо на першу сторінку
+    setImages([]);
+    setPage(1);
   };
 
   const openModal = (largeImageURL) => {

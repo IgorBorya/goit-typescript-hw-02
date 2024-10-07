@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form {
+  display: flex;
+}
+
+.input {
+  width: 170px;
+}

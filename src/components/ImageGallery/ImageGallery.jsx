@@ -1,14 +1,15 @@
 import React from "react";
+import s from "./ImageGallery.module.css";
 
 const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <div>
+    <div className={s.gallery}>
       {images.map((image) => (
-        <div key={image.id}>
+        <div className={s.galleryItem} key={image.id}>
           <img
-            src={image.urls.small} // Тут використовуй ключ urls.small для зображення
-            alt={image.alt_description} // Або image.description
-            onClick={() => onImageClick(image.urls.full)} // Можливо ти захочеш відкрити велике зображення у модальному вікні
+            src={image.urls.small}
+            alt={image.alt_description}
+            onClick={() => onImageClick(image.urls.full)}
           />
         </div>
       ))}

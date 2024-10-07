@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import "./ImageModal.css";
 
 Modal.setAppElement("#root");
 
@@ -9,8 +10,9 @@ const ImageModal = ({ largeImageURL, onClose }) => {
       isOpen={!!largeImageURL}
       onRequestClose={onClose}
       contentLabel="Image Modal"
+      className="modal"
     >
-      <img src={largeImageURL} alt="" />
+      <img className="modal_image" src={largeImageURL} alt="" />
       <button onClick={onClose}>Close</button>
     </Modal>
   );
