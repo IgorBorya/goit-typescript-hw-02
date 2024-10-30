@@ -7,7 +7,7 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import toast from "react-hot-toast";
 
-const ACCESS_KEY = "7wuvv6rFgDuH5W9-kRiomWYwM2sOVcW4sN60Q_Va3nI"; // Unsplash API ключ
+const ACCESS_KEY = "NZzln6oib1vGq4GTUh-xLWCBSAGPWlk4hmOt9IF-4y8"; // Unsplash API ключ
 
 const App = () => {
   const [images, setImages] = useState([]);
