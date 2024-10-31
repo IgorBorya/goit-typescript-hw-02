@@ -6,10 +6,10 @@ import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import toast from "react-hot-toast";
-
+import { ImageURLs } from "./components/ImageCard/ImageCard";
 type Image = {
   id: string;
-  urls: string;
+  urls: ImageURLs;
   tags: string;
   largeImageURL: string;
 };
