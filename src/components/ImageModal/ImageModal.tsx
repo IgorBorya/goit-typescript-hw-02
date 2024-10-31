@@ -4,7 +4,12 @@ import "./ImageModal.css";
 
 Modal.setAppElement("#root");
 
-const ImageModal = ({ largeImageURL, onClose }) => {
+type ImageModalProps = {
+  largeImageURL: string | null;
+  onClose: () => void;
+};
+
+const ImageModal: React.FC<ImageModalProps> = ({ largeImageURL, onClose }) => {
   return (
     <Modal
       isOpen={!!largeImageURL}
@@ -12,7 +17,7 @@ const ImageModal = ({ largeImageURL, onClose }) => {
       contentLabel="Image Modal"
       className="modal"
     >
-      <img className="modal_image" src={largeImageURL} alt="" />
+      <img className="modal_image" src={largeImageURL ?? ""} alt="" />
       <button onClick={onClose}>Close</button>
     </Modal>
   );

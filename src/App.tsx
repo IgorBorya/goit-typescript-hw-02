@@ -7,24 +7,31 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import toast from "react-hot-toast";
 
-const ACCESS_KEY = "NZzln6oib1vGq4GTUh-xLWCBSAGPWlk4hmOt9IF-4y8"; // Unsplash API ключ
+type Image = {
+  id: string;
+  urls: string;
+  tags: string;
+  largeImageURL: string;
+};
 
-const App = () => {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
+const ACCESS_KEY = "NZzln6oib1vGq4GTUh-xLWCBSAGPWlk4hmOt9IF-4y8";
 
-  const fetchImages = async () => {
+const App: React.FC = () => {
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<string | null>(null);
+
+  const fetchImages = async (): Promise<void> => {
     if (!query) return;
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.get(
+      const response = await axios.get<{ results: Image[] }>(
         `https://api.unsplash.com/search/photos?query=${query}&page=${page}&per_page=12&client_id=${ACCESS_KEY}`
       );
       if (response.data.results.length === 0) {
@@ -46,19 +53,19 @@ const App = () => {
     }
   }, [query, page]);
 
-  const handleSearchSubmit = (newQuery) => {
+  const handleSearchSubmit = (newQuery: string): void => {
     if (newQuery === query) return;
     setQuery(newQuery);
     setImages([]);
     setPage(1);
   };
 
-  const openModal = (largeImageURL) => {
+  const openModal = (largeImageURL: string): void => {
     setModalImage(largeImageURL);
     setShowModal(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalImage(null);
     setShowModal(false);
   };
